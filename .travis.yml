@@ -1,6 +1,11 @@
 language: python
 python:
- - "2.7"
+    - "2.7"
 install:
- - "pip install html5validator"
-script: "html5validator"
+    - pip install html5validator
+script:
+    - html5validator
+    - mkdir -p dist/js tools/runner
+    - curl -o dist/js/axs_testing.js https://raw.githubusercontent.com/takenspc/accessibility-developer-tools/acctalk/dist/js/axs_testing.js
+    - curl -o tools/runner/audit.js https://raw.githubusercontent.com/takenspc/accessibility-developer-tools/acctalk/tools/runner/audit.js
+    - phantomjs tools/runner/audit.js index.html
